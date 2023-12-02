@@ -2,7 +2,7 @@ const express = require('express');
 const uri = 'mongodb+srv://admin:12345@cluster0.oapaajq.mongodb.net/?retryWrites=true&w=majority';
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const Dados = require('./dados');
+const Dados = require('../dados');
 mongoose.connect(uri);
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -51,7 +51,7 @@ router.put('/', async function (req,res) {
 
 const app = express();
 app.use(bodyParser.json());
-app.use('/', router);
+app.use('/.netlify/functions/api', router);
 app.listen(3000, function () {
     console.log ('servidor iniciado em http://localhost:3000')
 })
