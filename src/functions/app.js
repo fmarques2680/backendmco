@@ -1,4 +1,5 @@
 const express = require('express');
+const serverless = require("serverless-http");
 const uri = 'mongodb+srv://admin:12345@cluster0.oapaajq.mongodb.net/?retryWrites=true&w=majority';
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -51,7 +52,8 @@ router.put('/', async function (req,res) {
 
 const app = express();
 app.use(bodyParser.json());
-app.use('/', router);
-app.listen(3000, function () {
-    console.log ('servidor iniciado em http://localhost:3000')
-})
+app.use(`/.netlify/functions/api`, router);
+
+// Export the app and the serverless function
+module.exports = app;
+module.exports.handler = serverless(app);
