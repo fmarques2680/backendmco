@@ -1,4 +1,5 @@
 const express = require('express');
+const cors = require('cors');
 const uri = 'mongodb+srv://admin:12345@cluster0.oapaajq.mongodb.net/?retryWrites=true&w=majority';
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -52,7 +53,9 @@ router.put('/', async function (req,res) {
 const app = express();
 app.use(bodyParser.json());
 app.use(`/api`, router);
+app.use(cors());
 export default app;
+
 
 
 
