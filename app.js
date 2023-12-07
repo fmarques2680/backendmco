@@ -1,9 +1,8 @@
 const express = require('express');
-const serverless = require("serverless-http");
 const uri = 'mongodb+srv://admin:12345@cluster0.oapaajq.mongodb.net/?retryWrites=true&w=majority';
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
-const Dados = require('../dados');
+const Dados = require('./dados');
 mongoose.connect(uri);
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -52,8 +51,8 @@ router.put('/', async function (req,res) {
 
 const app = express();
 app.use(bodyParser.json());
-app.use(`/.netlify/functions/api`, router);
+app.use(`/api`, router);
+export default app;
 
-// Export the app and the serverless function
-module.exports = app;
-module.exports.handler = serverless(app);
+
+
