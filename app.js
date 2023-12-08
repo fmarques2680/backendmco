@@ -13,6 +13,8 @@ db.once('open', function() {
 const router = express.Router();
 
 
+app.use(cors());
+
 
 router.get('/', async function (req,res) {
     Dados.find().then(dados => {
