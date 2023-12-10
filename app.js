@@ -13,7 +13,7 @@ db.once('open', function() {
 const router = express.Router();
 
 
-
+app.use(cors());
 
 
 router.get('/', async function (req,res) {
@@ -50,6 +50,7 @@ router.put('/', async function (req,res) {
         res.status(500).send(error)
     }
 })
+
 
 
 const app = express();
