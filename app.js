@@ -1,7 +1,10 @@
 const express = require('express');
-const cors = require('cors');
-const uri = 'mongodb+srv://admin:12345@cluster0.oapaajq.mongodb.net/?retryWrites=true&w=majority';
 const mongoose = require('mongoose');
+const cors = require('cors');
+const app = express();
+
+const uri = 'mongodb+srv://admin:12345@cluster0.oapaajq.mongodb.net/?retryWrites=true&w=majority';
+
 const bodyParser = require('body-parser');
 const Dados = require('./dados');
 mongoose.connect(uri);
@@ -13,7 +16,7 @@ db.once('open', function() {
 const router = express.Router();
 
 
-app.use(cors());
+
 
 
 router.get('/', async function (req,res) {
@@ -53,11 +56,12 @@ router.put('/', async function (req,res) {
 
 
 
-const app = express();
+
 app.use(bodyParser.json());
 app.use(`/api`, router);
 app.use((req, res, next) => {
-    res.header('Access-Control-Allow-Origin', 'https://fmarques2680.github.io');
+    res.header('Access-Control-Allow-Origin', "https://fmarques2680.github.io");
+    app.use(cors());
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
     res.header('Access-Control-Allow-Headers', 'Content-Type');
     next();
