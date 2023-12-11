@@ -48,10 +48,11 @@ router.post('/', async function (req, res) {
 
 router.put('/', async function (req, res) {
     try {
-        const item = await Dados.find(); // Use findOne() em vez de find()
+        const item = await Dados.findOne(); // Use findOne() em vez de find()
 
         // Verifica se existe um documento para atualizar
         if (!item) {
+            console.error('Nenhum documento encontrado para atualização.');
             return res.status(404).send('Nenhum documento encontrado para atualização.');
         }
 
@@ -61,15 +62,18 @@ router.put('/', async function (req, res) {
 
         // Verifica se a atualização foi bem-sucedida antes de enviar a resposta
         if (!dados) {
+            console.error('Erro durante a atualização.');
             return res.status(500).send('Erro durante a atualização.');
         }
 
+        console.log('Atualização bem-sucedida:', dados);
         res.send(dados);
     } catch (error) {
-        console.error(error);
+        console.error('Erro durante a atualização:', error);
         res.status(500).send(error.message || 'Erro interno no servidor.');
     }
 });
+
 
 
 
