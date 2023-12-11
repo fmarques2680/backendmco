@@ -49,7 +49,7 @@ router.post('/', async function (req, res) {
 router.put('/', async function (req, res) {
     try {
         const item = await Dados.find(); // Use findOne() em vez de find()
-        
+
         // Verifica se existe um documento para atualizar
         if (!item) {
             return res.status(404).send('Nenhum documento encontrado para atualização.');
@@ -58,13 +58,19 @@ router.put('/', async function (req, res) {
         // Atualiza apenas os campos presentes em req.body
         const updatedFields = { $set: req.body };
         const dados = await Dados.findByIdAndUpdate(item._id, updatedFields, { new: true });
-        
+
+        // Verifica se a atualização foi bem-sucedida antes de enviar a resposta
+        if (!dados) {
+            return res.status(500).send('Erro durante a atualização.');
+        }
+
         res.send(dados);
     } catch (error) {
         console.error(error);
-        res.status(500).send(error);
+        res.status(500).send(error.message || 'Erro interno no servidor.');
     }
 });
+
 
 
 // Rotas da API prefixadas com '/api'
