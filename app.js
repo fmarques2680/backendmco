@@ -48,14 +48,24 @@ router.post('/', async function (req, res) {
 
 router.put('/', async function (req, res) {
     try {
-        const item = await Dados.find();
-        const dados = await Dados.findByIdAndUpdate(item[0]._id, { $set: req.body }, { new: true });
+        const item = await Dados.find(); // Use findOne() em vez de find()
+        
+        // Verifica se existe um documento para atualizar
+        if (!item) {
+            return res.status(404).send('Nenhum documento encontrado para atualização.');
+        }
+
+        // Atualiza apenas os campos presentes em req.body
+        const updatedFields = { $set: req.body };
+        const dados = await Dados.findByIdAndUpdate(item._id, updatedFields, { new: true });
+        
         res.send(dados);
     } catch (error) {
         console.error(error);
         res.status(500).send(error);
     }
 });
+
 
 // Rotas da API prefixadas com '/api'
 app.use('/api', router);
