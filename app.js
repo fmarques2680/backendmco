@@ -49,7 +49,7 @@ router.post('/', async function (req, res) {
 router.put('/', async function (req, res) {
     try {
         const item = await Dados.find();
-        const dados = await Dados.findByIdAndUpdate(item[0]._id, req.body, { new: true });
+        const dados = await Dados.findByIdAndUpdate(item[0]._id, { $set: req.body }, { new: true });
         res.send(dados);
     } catch (error) {
         console.error(error);
