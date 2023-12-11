@@ -1,6 +1,6 @@
 const mongoose = require ('mongoose');
 const dadosSchema = new mongoose.Schema({
-    dadosTabela: String,
+    dadosTabela: [[String]],
     dadosTabela2: String,
     dadosTabela3: String,
     dadosTabela4: String,
