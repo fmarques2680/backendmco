@@ -48,7 +48,9 @@ router.post('/', async function (req, res) {
 
 router.put('/', async function (req, res) {
     try {
-        const item = await Dados.findOne(); // Use findOne() em vez de find()
+        console.log('Requisição PUT recebida:', req.body);  // Adicione esta linha
+
+        const item = await Dados.findOne();
 
         // Verifica se existe um documento para atualizar
         if (!item) {
@@ -59,6 +61,7 @@ router.put('/', async function (req, res) {
         // Atualiza apenas os campos presentes em req.body
         const updatedFields = { $set: req.body };
         const dados = await Dados.findByIdAndUpdate(item._id, updatedFields, { new: true });
+        console.log('Dados atualizados:', dados);  // Adicione esta linha
 
         // Verifica se a atualização foi bem-sucedida antes de enviar a resposta
         if (!dados) {
