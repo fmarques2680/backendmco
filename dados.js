@@ -36,20 +36,4 @@ const dadosSchema = new mongoose.Schema({
 })
 const Dados = mongoose.model('Dados', dadosSchema);
 
-// Modificando os valores de 'clubeSelecionado8' e 'clubeSelecionado9'
-Dados.updateMany(
-    {}, // Condição para encontrar os documentos (pode ser mais específico se necessário)
-    { $set: { clubeSelecionado1: "Ajax", clubeSelecionado2: "Al Ittihad", clubeSelecionado3: "Barnsley"
-    , clubeSelecionado4: "Boca Juniors", clubeSelecionado5: "Gent", clubeSelecionado6: "Hannover 96"
-    , clubeSelecionado7: "Leeds United", clubeSelecionado8: "Liverpool", clubeSelecionado9: "Newell's Old Boys"
-    , clubeSelecionado10: "Olympique Lyonnais", clubeSelecionado11: "Zürich" } }, // Atualização dos valores
-    (err, result) => {
-        if (err) {
-            console.error(err);
-        } else {
-            console.log(result);
-        }
-    }
-);
-
 module.exports = Dados;
