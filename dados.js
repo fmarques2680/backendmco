@@ -22,17 +22,17 @@ const dadosSchema = new mongoose.Schema({
     anoAtual9: String,
     anoAtual10: String,
     anoAtual11: String,
-    clubeSelecionado1: String,
-    clubeSelecionado2: String,
-    clubeSelecionado3: String,
-    clubeSelecionado4: String,
-    clubeSelecionado5: String,
-    clubeSelecionado6: String,
-    clubeSelecionado7: String,
-    clubeSelecionado8: String,
-    clubeSelecionado9: String,
-    clubeSelecionado10: String,
-    clubeSelecionado11: String
+    clubeSelecionado1: "Ajax",
+    clubeSelecionado2: "Al Ittihad",
+    clubeSelecionado3: "Barnsley",
+    clubeSelecionado4: "Boca Juniors",
+    clubeSelecionado5: "Gent",
+    clubeSelecionado6: "Hannover 96",
+    clubeSelecionado7: "Leeds United",
+    clubeSelecionado8: "Liverpool",
+    clubeSelecionado9: "Newell's Old Boys",
+    clubeSelecionado10: "Olympique Lyonnais",
+    clubeSelecionado11: "Zürich",
 })
 const Dados = mongoose.model('Dados', dadosSchema);
 module.exports = Dados;
