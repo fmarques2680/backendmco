@@ -1,4 +1,5 @@
-const mongoose = require ('mongoose');
+const mongoose = require('mongoose');
+
 const dadosSchema = new mongoose.Schema({
     dadosTabela: [[String]],
     dadosTabela2: [[String]],
@@ -33,7 +34,8 @@ const dadosSchema = new mongoose.Schema({
     clubeSelecionado9: String,
     clubeSelecionado10: String,
     clubeSelecionado11: String
-})
+});
+
 const Dados = mongoose.model('Dados', dadosSchema);
 
 module.exports = Dados;
